@@ -57,7 +57,7 @@ To call the method you simply need to use its name, as shown in the last line of
 
 ## Method Scope and Arguments
 Scope in programming basically means where your variables and methods are available. You have
-mostly been working in the `main` scope in ruby so far which in the **global scope**.
+mostly been working in the `main` object in ruby so far which is the **global scope**.
 This means your variables are available anywhere in the particular program you've been working on.
 
 One of the important concepts about methods that you need to have a good understanding
@@ -75,7 +75,7 @@ greetings #=> undefined local variable or method `greeting' for main:Object
 ```
 
 This example will cause an error `undefined local variable or method message'`
-Run the example on your local machine [repl.it](https://repl.it) to see for yourself.
+Run the example on your local machine or [repl.it](https://repl.it) to see for yourself.
 
 This works in reverse as well, variables declared within a method will not be available
 outside of the method:
@@ -108,6 +108,8 @@ As you can see from the example you pass arguments into a method when you call i
 
 Using parenthesis looks cleaner and makes your code easier to read though.
 
+
+### More about Arguments
 You can pass as many arguments as you like into a method:
 
 ```(ruby)
@@ -116,7 +118,36 @@ def greeting(first_name, surname, location)
 end
 
 greeting("Katrina", "Mc Laughlin", "London") #=> "Welcome Katrina Mc Laughlin from London"
-```  
+```
+
+what if you don't know how many arguments you will want to pass into a method? you can
+use the splat operator with your argument in this scenario:
+
+```(ruby)
+def greeting(*names)
+  names.map { |name| "welcome #{name} " }.join(' ')
+end
+
+greeting("Katrina") #=> "welcome Katrina"
+```
+
+You can set your arguments to have a default value if the argument isn't passed in when
+the method is called. Heres an example:
+```(ruby)
+def greeting(first_name, location='Earth')
+  "Welcome #{first_name} from #{location}"
+end
+
+greeting('Bob', 'Paris') #=> "Welcome Bob from Paris"
+
+greeting('Katrina') #=> "Welcome Katrina from Earth"
+```
+
+
+
+
+
+
 
 ## What Methods Return
 * explicit and implicit returns
